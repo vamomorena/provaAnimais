@@ -1,0 +1,115 @@
+#include <iostream>
+
+using namespace std;
+
+class Animal {
+  protected:
+    string nome;
+    string cor;
+    string ambiente;
+    int    numeroPatas;
+    float  comprimento;
+    float  velocidadeMedia;
+  public:
+    Animal(string nome, string cor, string ambiente, int numeroPatas, float comprimento, float velocidadeMedia){
+        setNome(nome);
+        setCor(cor);
+        setAmbiente(ambiente);
+        setNumeroPatas(numeroPatas);
+        setComprimento(comprimento);
+        setVelocidadeMedia(velocidadeMedia);
+    };
+    void setNome(string valor) {
+      nome = valor;
+    }
+    string getNome() {
+      return nome;
+    }
+    void setCor(string valor) {
+      cor = valor;
+    }
+    string getCor() {
+      return cor;
+    }
+    void setAmbiente(string valor) {
+      ambiente = valor;
+    }
+    string getAmbiente() {
+      return ambiente;
+    }
+    void setNumeroPatas(int valor) {
+      numeroPatas = valor;
+    }
+    int getNumeroPatas() {
+      return numeroPatas;
+    }
+    void setComprimento(float valor) {
+      comprimento = valor;
+    }
+    float getComprimento() {
+      return comprimento;
+    }
+    void setVelocidadeMedia(float valor) {
+      velocidadeMedia = valor;
+    }
+    float getVelocidadeMedia() {
+      return velocidadeMedia;
+    }
+};
+
+class Peixe: public Animal {
+  protected:    
+    string caracteristica;
+  public:
+    Peixe(string nome, string cor, string ambiente, int numeroPatas, float comprimento, float velocidadeMedia, string caracteristica) : Animal(nome, cor, ambiente, numeroPatas, comprimento, velocidadeMedia) {
+      setCaracteristica(caracteristica);
+    }
+    void setCaracteristica(string valor) {
+      caracteristica = valor;
+    }
+    string getCaracteristica() {
+      return caracteristica;
+    }
+    void dadosPeixe(){
+        cout<<"É um " + getNome() + " " + getCor() + " que vive no " + getAmbiente() + ", tem " + to_string(getNumeroPatas()) + " patas, mede " + to_string(getComprimento()) + " cm, se move a " + to_string(getVelocidadeMedia()) + "m/s e tem como característica " + getCaracteristica() + "!" << endl;
+    };
+};
+
+class Mamifero: public Animal {
+  protected:    
+    string alimento;
+  public:
+    Mamifero(string nome, string cor, string ambiente, int numeroPatas, float comprimento, float velocidadeMedia, string alimento) : Animal(nome, cor, ambiente, numeroPatas, comprimento, velocidadeMedia) {
+      setAlimento(alimento);
+    }
+    void setAlimento(string valor) {
+      alimento = valor;
+    }
+    string getAlimento() {
+      return alimento;
+    }
+    void dadosMamifero(){
+        cout<<"É um " + getNome() + " " + getCor() + " que vive no(a) " + getAmbiente() + ", tem " + to_string(getNumeroPatas()) + " patas, mede " + to_string(getComprimento()) + " metros, se move a " + to_string(getVelocidadeMedia()) + "m/s e se alimenta de " + getAlimento() + "!" << endl;
+    };
+};
+
+class Sistema{
+  public:
+    void executar(){
+        Mamifero camelo("camelo", "amarelo", "terra", 4, 150, 2, "arbusto");
+        Peixe tubarao("tubarão", "cinzento", "mar", 0, 300, 1.5, "barbatanas e cauda");
+        Mamifero ursoCanada("urso-do-canadá", "vermelho", "terra", 4, 180, 0.5, "mel");
+        
+        camelo.dadosMamifero();
+        tubarao.dadosPeixe();
+        ursoCanada.dadosMamifero();
+    };
+};
+
+int main()
+{
+    Sistema sistema;
+    sistema.executar();
+    
+    return 0;
+}
